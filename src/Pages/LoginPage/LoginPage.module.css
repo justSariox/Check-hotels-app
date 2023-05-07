@@ -1,0 +1,20 @@
+.loginPage {
+    position: relative; /* делаем элемент относительным для позиционирования псевдоэлемента */
+    height: 100vh;
+    overflow: hidden; /* скрываем выходы фонового изображения за пределы элемента */
+}
+
+.loginPage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/src/assets/IMG_20210312_140957_174 1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5; /* задаем прозрачность для фонового изображения */
+    z-index: -1; /* устанавливаем z-index, чтобы псевдоэлемент был под содержимым */
+}
+
