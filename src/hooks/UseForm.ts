@@ -1,13 +1,5 @@
 import {useState, useEffect, ChangeEvent} from "react";
-
-export interface IFormValues {
-    email: string
-    password: string
-}
-export interface IFormErrors {
-    email?: string
-    password?: string
-}
+import {IFormErrors, IFormValues} from "../types/validation/validationInfoTypes";
 
 export const useForm = (callback: () => void, validate: (values: IFormValues) => IFormErrors) => {
     const [values, setValues] = useState<IFormValues>({

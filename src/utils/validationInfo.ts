@@ -1,12 +1,4 @@
-interface IFormValues {
-    email: string,
-    password: string
-}
-
-interface IFormErrors {
-    email?: string,
-    password?: string
-}
+import {IFormErrors, IFormValues} from "../types/validation/validationInfoTypes";
 
 export const validationInfo = (values: IFormValues) => {
     const errors: IFormErrors = {}

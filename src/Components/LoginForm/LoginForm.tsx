@@ -29,7 +29,7 @@ export const LoginForm = () => {
             <label className={style.formLabel}>
                 Пароль
                 <input
-                    className={`${style.formInput} ${errors.email && style.error}`}
+                    className={`${style.formInput} ${errors.password && style.error}`}
                     type='password'
                     name='password'
                     value={values.password}
