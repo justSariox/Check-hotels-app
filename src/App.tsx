@@ -3,6 +3,8 @@ import {useForm} from "./hooks/UseForm";
 import {validationInfo} from "./utils/validationInfo";
 
 import {LoginPage} from "./Pages/LoginPage/LoginPage";
+import {Main} from "./Pages/Main/Main";
+
 
 
 const App = () => {
@@ -13,8 +15,8 @@ const App = () => {
     return (
         <div >
 
-            <LoginPage/>
-
+            {/*<LoginPage/>*/}
+            <Main/>
         </div>
     );
 };

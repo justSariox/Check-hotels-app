@@ -1,0 +1,50 @@
+.favorites {
+    padding: 32px;
+}
+.header{
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #424242;
+}
+
+.filterSection {
+    width: 50%;
+
+    display: flex;
+    padding-top: 32px;
+}
+
+.filter {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    letter-spacing: -0.408px;
+
+    color: #41522E;
+
+    padding: 4px 8px;
+
+    background: #FFFFFF;
+    border: 1px solid #41522E;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+
+}
+.filter:first-child {
+    margin-right:8px ;
+}
