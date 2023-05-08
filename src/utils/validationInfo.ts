@@ -8,7 +8,7 @@ export const validationInfo = (values: IFormValues) => {
         : !/\S+@\S+\.\S+/.test(values.email)
             ? 'Email address is invalid'
             : undefined
-    errors.password = !values.password
+    errors.password = !values.password.trim()
         ? 'Password is required'
         : values.password.length < 8
             ? 'Password needs to be 8 characters or more'
