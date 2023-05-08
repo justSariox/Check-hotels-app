@@ -30,7 +30,7 @@ export const LoginForm = () => {
                 Пароль
                 <input
                     className={`${style.formInput} ${errors.email && style.error}`}
-                    type='text'
+                    type='password'
                     name='password'
                     value={values.password}
                     onChange={handleChange}

@@ -9,18 +9,20 @@ interface IFormErrors {
 }
 
 export const validationInfo = (values: IFormValues) => {
-    let errors: IFormErrors = {}
+    const errors: IFormErrors = {}
 
-    if (!values.email.trim()) {
-        errors.email = 'Email required'
-    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-        errors.email = 'Email address is invalid';
-    }
-    if (!values.password) {
-        errors.password = 'Password is required';
-    } else if (values.password.length < 8) {
-        errors.password = 'Password needs to be 8 characters or more';
-    }
+    errors.email = !values.email.trim()
+        ? 'Email required'
+        : !/\S+@\S+\.\S+/.test(values.email)
+            ? 'Email address is invalid'
+            : undefined
+    errors.password = !values.password
+        ? 'Password is required'
+        : values.password.length < 8
+            ? 'Password needs to be 8 characters or more'
+            : /[^\u0000-\u007F]+/.test(values.password)
+                ? 'Password should not contain Cyrillic characters'
+                : undefined
     return errors
 }
 
