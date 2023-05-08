@@ -1,21 +1,20 @@
-import React, {ChangeEvent, Dispatch, SetStateAction, useEffect, useState} from 'react';
+import React, {KeyboardEvent, ChangeEvent, Dispatch, SetStateAction, useEffect, useState} from 'react';
 import styles from './DatePicker.module.css';
 import axios from "axios";
-import formatterDate from "../../../utils/formatterDate";
-// import {checkOutDate, formatterDateCheckIn, getFullDate} from "../../../utils/formatterDate";
+import {TInputHandler} from "../../../types/DatePicker/DatePicker";
 
 
 export type MainProps = {
-    setSearchResults:Dispatch<SetStateAction<never[]>>
+    setSearchResults: Dispatch<SetStateAction<never[]>>
 }
 
 
-export const DatePicker = (props:MainProps) => {
+export const DatePicker = (props: MainProps) => {
     const date = new Date().toISOString().split('T')[0]
     // console.log(date)
 
     const [location, setLocation] = useState('Москва');
-    const [checkIn, setCheckIn] = useState(date); // заезд
+    const [checkIn, setCheckIn] = useState<string>(date); // заезд
     const [days, setDays] = useState<string>('1');
     const [checkOut, setCheckOut] = useState('');
 
@@ -37,20 +36,28 @@ export const DatePicker = (props:MainProps) => {
         }
     };
 
+    const inputHandlers: TInputHandler = {
+        location: setLocation,
+        checkIn: setCheckIn,
+        days: setDays
+    };
+
 
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        switch (e.currentTarget.name) {
-            case 'location':
-                return setLocation(e.currentTarget.value)
-            case 'checkIn':
-                return setCheckIn(e.currentTarget.value)
-            case 'days':
-                return setDays(e.currentTarget.value)
+        const {name, value} = e.currentTarget;
+        const handler = inputHandlers[name];
+        if (handler) {
+            const isValidDate = name === 'checkIn' || name === 'checkOut'
+                ? !isNaN(new Date(value).getTime())
+                : true;
+            if (isValidDate) {
+                handler(value);
+            }
         }
     }
 
-    console.log(location,checkIn,checkOut)
+    console.log(location, checkIn, checkOut)
 
     return (
         <>
@@ -79,6 +86,7 @@ export const DatePicker = (props:MainProps) => {
                         type={'date'}
                         value={checkIn}
                         onChange={onChangeInputHandler}
+
                     />
                 </div>
                 <div className={styles.third}>
