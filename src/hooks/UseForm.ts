@@ -2,6 +2,7 @@ import {useState, useEffect, ChangeEvent} from "react";
 import {IFormErrors, IFormValues} from "../types/validation/validationInfoTypes";
 
 export const useForm = (callback: () => void, validate: (values: IFormValues) => IFormErrors) => {
+    const [isAuth, setIsAuth] = useState<boolean>(false)
     const [values, setValues] = useState<IFormValues>({
         email: '',
         password: '',
@@ -9,6 +10,9 @@ export const useForm = (callback: () => void, validate: (values: IFormValues) =>
     const [errors, setErrors] = useState<IFormErrors>({})
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const handleLogin = () => {
+        setIsAuth(!isAuth)
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget
@@ -35,6 +39,6 @@ export const useForm = (callback: () => void, validate: (values: IFormValues) =>
         }
     }, [errors])
 
-    return { handleChange, handleSubmit, handleBlur, values, errors, validate}
+    return { handleChange, handleSubmit, handleBlur, handleLogin, isAuth, values, errors, validate}
 
 }

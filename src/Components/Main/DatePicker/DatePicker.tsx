@@ -1,36 +1,32 @@
-import React, {KeyboardEvent, ChangeEvent, Dispatch, SetStateAction, useEffect, useState} from 'react';
+/*import react*/
+import React, {ChangeEvent, FC} from 'react';
+/*import styles modules*/
 import styles from './DatePicker.module.css';
+/*import types*/
 import axios from "axios";
-import {TInputHandler} from "../../../types/DatePicker/DatePicker";
+
+import {IDatePickerProps, TInputHandler} from "../../../types/DatePicker/DatePicker";
+
+export const DatePicker: FC<IDatePickerProps> = ({
+    setSearchResults,
+    checkIn,
+    days,
+    location,
+    setLocation,
+    setCheckIn,
+    setDays,
+    checkOut,
+})=> {
 
 
-export type MainProps = {
-    setSearchResults: Dispatch<SetStateAction<never[]>>
-}
 
-
-export const DatePicker = (props: MainProps) => {
-    const date = new Date().toISOString().split('T')[0]
-    // console.log(date)
-
-    const [location, setLocation] = useState('Москва');
-    const [checkIn, setCheckIn] = useState<string>(date); // заезд
-    const [days, setDays] = useState<string>('1');
-    const [checkOut, setCheckOut] = useState('');
-
-    useEffect(() => {
-        const newCheckIn = new Date(checkIn);
-        newCheckIn.setDate(newCheckIn.getDate() + +days);
-        setCheckOut(newCheckIn.toISOString().split('T')[0]);
-    }, [checkIn, days]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const url = `http://engine.hotellook.com/api/v2/cache.json?location=${location}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=10`;
         try {
             const response = await axios.get(url);
-            console.log(response.data);
-            // здесь вы можете обработать данные, полученные с сервера
+            setSearchResults(response.data)
         } catch (error) {
             console.error(error);
         }
@@ -41,7 +37,6 @@ export const DatePicker = (props: MainProps) => {
         checkIn: setCheckIn,
         days: setDays
     };
-
 
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +51,6 @@ export const DatePicker = (props: MainProps) => {
             }
         }
     }
-
-    console.log(location, checkIn, checkOut)
 
     return (
         <>

@@ -1,11 +1,17 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {LoginForm} from "../../Components/LoginForm/LoginForm";
 import style from './LoginPage.module.css'
 
-export const LoginPage = () => {
+type LoginPagePropsType = {
+
+}
+
+
+export const LoginPage: FC<LoginPagePropsType> = ({}) => {
+
     return (
         <div className={style.loginPage}>
-        <LoginForm/>
+        <LoginForm />
         </div>
     );
 };

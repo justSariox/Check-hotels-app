@@ -1,13 +1,23 @@
-import React, {useState} from 'react';
+import React, {FC, MouseEvent, useState} from 'react';
 import {useForm} from "../../hooks/UseForm";
 import {validationInfo} from "../../utils/validationInfo";
 import style from './LoginForm.module.css'
 
+type LoginFormPropsType = {
 
-export const LoginForm = () => {
+}
+
+export const LoginForm: FC<LoginFormPropsType> = ({}) => {
+
     const [isSubmitted, setIsSubmitted] = useState(false)
     const submitForm = () => {
         setIsSubmitted(true)
+
+    }
+
+    const onLoginHandler = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+
     }
 
     const { handleChange, handleSubmit, handleBlur, values, errors} = useForm(submitForm, validationInfo)
@@ -41,6 +51,7 @@ export const LoginForm = () => {
             <button
                 type={'submit'}
                 className={style.formButton}
+                onClick={onLoginHandler}
             >
                 Login
             </button>

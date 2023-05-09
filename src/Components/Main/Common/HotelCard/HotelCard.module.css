@@ -1,0 +1,95 @@
+.card{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: transparent;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid rgba(135, 135, 135, 0.2);
+}
+.imageBlock{
+    grid-area: 1 / 1 / 2 / 2;
+
+
+}
+.descriptionBlock {
+    grid-area: 1 / 2 / 2 / 6;
+    display: flex;
+    flex-direction: column;
+
+}
+.priceBlock {
+    grid-area: 1 / 8 / 2 / 10;
+}
+
+/**/
+.hotelTitle {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 22px;
+    /* or 129% */
+
+    letter-spacing: -0.408px;
+
+    color: #424242;
+
+    padding: 0;
+    margin: 0;
+}
+.date {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    /* or 157% */
+
+    letter-spacing: -0.408px;
+
+    color: #878787;
+}
+.days {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    /* identical to box height, or 157% */
+
+    letter-spacing: -0.408px;
+
+    color: #878787;
+}
+
+.priceTitle {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 22px;
+    /* or 200% */
+
+    letter-spacing: -0.408px;
+
+    color: #878787;
+}
+
+.priceValue {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+    /* or 129% */
+
+    text-align: right;
+    letter-spacing: -0.408px;
+
+    color: #424242;
+    margin-left: 8px;
+}

@@ -11,7 +11,7 @@ export type MainDataTypes = {
         state: null | string
     }
     locationId: string
-    priceAvg: string
+    priceAvg: number
     priceFrom: string
     pricePercentile: {
         3: number
