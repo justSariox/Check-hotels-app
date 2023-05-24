@@ -1,43 +1,28 @@
+import React, {ChangeEvent, Dispatch, FC, SetStateAction, useEffect, useState} from 'react';
 /*import react*/
-import React, {ChangeEvent, FC} from 'react';
 /*import styles modules*/
-import styles from './DatePicker.module.css';
-/*import types*/
-import axios from "axios";
 
+import styles from './DatePicker.module.css';
 import {IDatePickerProps, TInputHandler} from "../../../types/DatePicker/DatePicker";
 
 export const DatePicker: FC<IDatePickerProps> = ({
-    setSearchResults,
-    checkIn,
-    days,
-    location,
-    setLocation,
-    setCheckIn,
-    setDays,
-    checkOut,
-})=> {
+                                                     setSearchResults,
+                                                     checkIn,
+                                                     days,
+                                                     location,
+                                                     setLocation,
+                                                     setCheckIn,
+                                                     setDays,
+                                                     checkOut,
+                                                     handleSubmit,
+                                                 }) => {
 
-
-
-
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const url = `http://engine.hotellook.com/api/v2/cache.json?location=${location}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=10`;
-        try {
-            const response = await axios.get(url);
-            setSearchResults(response.data)
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     const inputHandlers: TInputHandler = {
         location: setLocation,
         checkIn: setCheckIn,
         days: setDays
     };
-
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.currentTarget;
@@ -50,7 +35,9 @@ export const DatePicker: FC<IDatePickerProps> = ({
                 handler(value);
             }
         }
+
     }
+
 
     return (
         <>
@@ -65,6 +52,7 @@ export const DatePicker: FC<IDatePickerProps> = ({
                         className={`${styles.formInput}`}
                         type={'text'}
                         value={location}
+
                         onChange={onChangeInputHandler}
                     />
                 </div>
@@ -78,6 +66,7 @@ export const DatePicker: FC<IDatePickerProps> = ({
                         className={styles.formInput}
                         type={'date'}
                         value={checkIn}
+
                         onChange={onChangeInputHandler}
 
                     />
@@ -92,6 +81,7 @@ export const DatePicker: FC<IDatePickerProps> = ({
                         className={`${styles.formInput} ${styles.thirdInput}`}
                         type={'number'}
                         value={days}
+
                         onChange={onChangeInputHandler}
                     />
                 </div>
@@ -102,3 +92,19 @@ export const DatePicker: FC<IDatePickerProps> = ({
         </>
     );
 };
+
+
+
+/*    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const url = `http://engine.hotellook.com/api/v2/cache.json?location=${location}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=10`;
+        try {
+            const response = await axios.get(url);
+            setSearchResults(response.data)
+
+            // здесь вы можете обработать данные, полученные с сервера
+
+        } catch (error) {
+            console.error(error);
+        }
+    };*/

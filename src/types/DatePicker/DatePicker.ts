@@ -15,5 +15,5 @@ export interface IDatePickerProps {
     setCheckIn: Dispatch<SetStateAction<string>>
     setDays: Dispatch<SetStateAction<string>>
     checkOut: string
-    /*handleSubmit:()=>Promise<void>*/
+    handleSubmit:(event: React.FormEvent<HTMLFormElement>)=>Promise<any>
 }

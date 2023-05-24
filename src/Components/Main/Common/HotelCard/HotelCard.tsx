@@ -1,10 +1,16 @@
-import React, {FC} from 'react';
+import React, {Dispatch, FC, SetStateAction, useState} from 'react';
 import styles from './HotelCard.module.css'
 import IMAGE from  '../../../../assets/HomeImg.png'
 import {IconButton, Rating} from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {priceConverter} from "../../../../utils/priceConverter";
+
+
+
 import {declineNumber} from "../../../../utils/formatterDate";
+import {MainDataTypes} from "../../../../types/store/StoreTypes";
+import {useMainContext} from "../../../../Pages/Main/MainContext";
+
 
 
 export type DataTypes ={
@@ -12,10 +18,19 @@ export type DataTypes ={
     title:string
     price:number
     raiting:number
-    days: string
+    days:string
+
+   /* addToFavorites:void*/
+    setFavoriteHotels:Dispatch<SetStateAction<Array<MainDataTypes>>>
+    favoriteHotels:Array<MainDataTypes>
 }
-export const HotelCard:FC<DataTypes> = ({title,price,key,raiting, days}) => {
+
+export const HotelCard:FC<DataTypes> = ({title,price,key,raiting, days,}) => {
    const correctPrice = priceConverter(price)
+
+
+
+
     return (
         <div className={styles.card} key={key}>
             {/*image*/}
@@ -24,14 +39,16 @@ export const HotelCard:FC<DataTypes> = ({title,price,key,raiting, days}) => {
             <div className={styles.descriptionBlock}>
                 <h3 className={styles.hotelTitle}>{title}</h3>
                 <div className={styles.hotelsDates}>
-                    <span className={styles.date}> 7 июля 2020</span>
+
                     <span className={styles.days}> - {days} { declineNumber(`${days}`, 'день')}</span>
+
                     <div> <Rating name="read-only" value={raiting} readOnly /></div>
                 </div>
             </div>
             {/*price section*/}
             <div className={styles.priceBlock} >
-                <IconButton>
+               {/* <IconButton onClick={()=>addToFavorites}>*/}
+                <IconButton onClick={()=>{}}>
                     <FavoriteBorderIcon/>
                 </IconButton>
                 <div>
